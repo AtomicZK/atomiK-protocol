@@ -38,9 +38,10 @@ contract Atomic {
     }
 
     function settle(uint256 id, SwapProof memory proof, bytes memory signature) public {
-        SwapInfo memory swap = swaps[id];
+        SwapInfo storage swap = swaps[id];
 
         require(swap.amount >= proof.amount, "Invalid settle amount");
+        swap.amount -= proof.amount;
 
         if(msg.sender == swap.from) {
             require(starts[id] + swap.duration < block.timestamp, "Invalid call timing");
@@ -50,6 +51,12 @@ contract Atomic {
         } else {
             revert("Invalid caller");
         }
+
+        if (swap.amount == 0) {
+            delete swaps[id];
+            delete starts[id];
+        }
+
         //transfert the balance of the msg.sender to the swap.to 
         payable(msg.sender).transfer(swap.amount);
     }
