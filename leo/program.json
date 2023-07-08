@@ -1,0 +1,10 @@
+{
+    "program": "atomic.aleo",
+    "version": "0.0.0",
+    "description": "",
+    "development": {
+        "private_key": "APrivateKey1zkp7ioUSQqzPBHTZUXsNo7F2y2YRWeG9HzWYutvAJbW9Yf4",
+        "address": "aleo18872z2dc6xqx3tw7pcpa433arppslynkcr68ykghk0jzjmmqagrsxu7dv6"
+    },
+    "license": "MIT"
+}
