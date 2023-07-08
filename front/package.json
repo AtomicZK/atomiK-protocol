@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@aleohq/sdk": "^0.4.5",
+    "@aleohq/ui": "^3.0.0",
+    "@aleohq/wasm": "^0.4.5",
     "@ant-design/icons": "^5.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

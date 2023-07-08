@@ -90,7 +90,7 @@ function Swap(props) {
       })
 
       
-      setPrices(res.data)
+      setPrices(1)
   }
 
   async function fetchDexSwap(){

@@ -23,9 +23,14 @@ function Header(props) {
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
+
+
+      //implémenter le wallet connect de Aleo 
         <div className="connectButton" onClick={connect}>
           {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
         </div>
+
+
       </div>
     </header>
   );
