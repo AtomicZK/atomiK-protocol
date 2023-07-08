@@ -111,6 +111,7 @@ program atomic.aleo {
             assert(start_time + info.duration < block.height); // no error here (just extension)
         } else if caller == info.to {
             // 2. if caller == to -> verify proof is correct
+            let hash: field = BHP256::hash_to_field(proof);
             
         } else {
             // throw error
