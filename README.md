@@ -23,7 +23,7 @@ XDC : 0xa46F57DABcB8406463EB1891e973baEa266b28AE
 Scroll :  0x7eE12e666158788b174FE311D0b67524910910ca
 Gnosis Chain : 0x7eE12e666158788b174FE311D0b67524910910ca
 
-The idea is to be able to swap from Aleo to any EVM, and by deploying our Swapping smart contract into those 3 EVM compatible blockchain. 
+The idea is to be able to swap from Aleo to any EVM, and that is the aim by deploying our Swapping smart contract into those 3 EVM compatible blockchain. 
 
 and for the DEX:
 https://github.com/AtomicZK/atomiczk-protocol/tree/main/solidity
