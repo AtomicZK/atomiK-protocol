@@ -19,10 +19,6 @@ https://github.com/AtomicZK/atomiczk-protocol/tree/main/solidity
 and for the DEX:
 https://github.com/AtomicZK/atomiczk-protocol/tree/main/solidity
 
-PowerPoint:
-
-[https://docs.google.com/presentation/d/18F4v7dttay4icrk-lXDBMCEBKE6EgpOiWNz3XInLmv4/edit?usp=sharing](https://docs.google.com/presentation/d/18F4v7dttay4icrk-lXDBMCEBKE6EgpOiWNz3XInLmv4/edit?usp=sharing)
-
 ### How to use atomik
 
 A frictionless, intuitive system, quick to use: 
@@ -40,8 +36,9 @@ A frictionless, intuitive system, quick to use:
 ### Presentation how it's works
 
 1- atomic cross chain swaps
-!(https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)
+![alt text](https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)
 
 
 2- atomic cross chain liquidity providing
-!(https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)
+![alt text](https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)
+
