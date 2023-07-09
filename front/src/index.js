@@ -3,25 +3,25 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { configureChains, mainnet, WagmiConfig, createClient } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import { configureChains, WagmiConfig, createConfig } from "wagmi";
+import { publicProvider } from 'wagmi/providers/public'
+import { gnosis, gnosisChiado, scrollTestnet, xdc, xdcTestnet, zkSync, zkSyncTestnet } from 'wagmi/chains'
 
-const { provider, webSocketProvider } = configureChains(
-  [mainnet],
-  [publicProvider()]
+const { publicClient, webSocketPublicClient } = configureChains(
+  [gnosis, gnosisChiado, scrollTestnet, xdc, xdcTestnet, zkSync, zkSyncTestnet ],
+  [publicProvider()],
 );
 
-const client = createClient({
+const config = createConfig({
   autoConnect: true,
-  provider,
-  webSocketProvider,
-});
-
+  publicClient,
+  webSocketPublicClient,
+})
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

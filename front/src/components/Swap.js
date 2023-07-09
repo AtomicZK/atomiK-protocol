@@ -20,7 +20,7 @@ function Swap(props) {
   const [tokenTwo, setTokenTwo] = useState(tokenList[1]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeToken, setChangeToken] = useState(1);
-  const [prices, setPrices] = useState(null);
+  const [prices, setPrices] = useState(1);
   const [txDetails, setTxDetails] = useState({
     to:null,
     data: null,
@@ -47,9 +47,9 @@ function Swap(props) {
   function changeAmount(e) {
     setTokenOneAmount(e.target.value);
     if(e.target.value && prices){
-      setTokenTwoAmount((e.target.value * prices.ratio).toFixed(2))
+      setTokenTwoAmount((e.target.value * prices).toFixed(0))
     }else{
-      setTokenTwoAmount(null);
+      setTokenTwoAmount(null)
     }
   }
 
@@ -85,9 +85,9 @@ function Swap(props) {
 
   async function fetchPrices(one, two){
 
-      const res = await axios.get(`http://localhost:3001/tokenPrice`, {
-        params: {addressOne: one, addressTwo: two}
-      })
+      // const res = await axios.get(`http://localhost:3001/tokenPrice`, {
+      //   params: {addressOne: one, addressTwo: two}
+      // })
 
       
       setPrices(1)
@@ -97,7 +97,7 @@ function Swap(props) {
 
     const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
   
-    if(allowance.data.allowance === "0"){
+    if (allowance.data.allowance === "0") {
 
       const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
 

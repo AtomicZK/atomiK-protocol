@@ -1,10 +1,27 @@
 import "./App.css";
 import Header from "./components/Header";
 import Swap from "./components/Swap";
-import NewAccount from "./components/NewAccount";
 import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+
+import contract from "./assets/contracts/Atomic.json";
+import deployment from "./assets/contracts/run-latest.json";
+
+
+export const AtomicContract = {
+  abi: contract.abi,
+  address: deployment.transactions[0].contractAddress,
+};
+
+// export const forkMainnet: Chain = {
+//   ...mainnet,
+//   name: "Forked Mainnet",
+//   rpcUrls: {
+//     default: { http: ['http://localhost:8545'] },
+//     public: { http: ['http://localhost:8545'] },
+//   }
+// }
 
 function App() {
   const { address, isConnected } = useAccount();
@@ -19,7 +36,6 @@ function App() {
       <div className="mainWindow">
         <Routes>
           <Route path="/" element={<Swap isConnected={isConnected} address={address} />} />
-          <Route path="/account" element={<NewAccount />} />
         </Routes>
       </div>
 
