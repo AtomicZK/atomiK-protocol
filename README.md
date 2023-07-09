@@ -9,7 +9,8 @@ By implementing this solution, we unlock two key features of our DEX. The first 
 The second feature is cross-chain liquidity providing, which connects the values of DeFi (Decentralized Finance) with the Cyberphunk ideology of privacy as a human right. By bridging liquidity across multiple chains ( here Aleo and XDC ),we empower users to access a wider range of liquidity and facilitate frictionless swaps. 
 Together, these features enhance the capabilities of our DEX, providing users with a seamless, secure, and privacy-focused experience that combines the benefits of open finance and the principles of Cyberphunk ideology.
 
-Danny Ba - Dannprinc#2842 - @dannyba10
+# Dapp 
+https://atomik-protocol.vercel.app/
 
 For the Atomik - cross chain atomic swap we have 2 smart contract :
 Repository:
