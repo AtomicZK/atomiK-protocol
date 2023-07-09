@@ -30,9 +30,11 @@ A frictionless, intuitive system, quick to use:
 
 3- Launch cross chain atomic swap
 
-4- Choose for only get it on you wallet or create a liquidity pool and provide it ( or provide a liquidity pool directly)
+4- choose the timelock to make the matching for the atomicswap 
 
-5- Enjoy
+5- Choose for only get it on you wallet or create a liquidity pool and provide it ( or provide a liquidity pool directly)
+
+6- Enjoy
 
 ### Presentation how it's works
 
