@@ -1,13 +1,13 @@
 # Atomik
 
-To connect DeFi values of open finance and Cyberphunk ideology of human right to Privacy.
+To connect DeFi values of open finance and Cyberpunk ideology of human right to Privacy.
 
 # Atomik (DEX) project description
 
 ### Enabling private cross chain atomic swaps for liquidity providing 
 By implementing this solution, we unlock two key features of our DEX. The first is cross-chain atomic swaps, which enable secure bridging of assets across different blockchain networks. This functionality allows users to seamlessly transfer assets between chains while ensuring the integrity and security of the transactions.
-The second feature is cross-chain liquidity providing, which connects the values of DeFi (Decentralized Finance) with the Cyberphunk ideology of privacy as a human right. By bridging liquidity across multiple chains ( here Aleo and XDC ),we empower users to access a wider range of liquidity and facilitate frictionless swaps. 
-Together, these features enhance the capabilities of our DEX, providing users with a seamless, secure, and privacy-focused experience that combines the benefits of open finance and the principles of Cyberphunk ideology.
+The second feature is cross-chain liquidity providing, which connects the values of DeFi (Decentralized Finance) with the Cyberpunk ideology of privacy as a human right. By bridging liquidity across multiple chains ( here Aleo and XDC ),we empower users to access a wider range of liquidity and facilitate frictionless swaps. 
+Together, these features enhance the capabilities of our DEX, providing users with a seamless, secure, and privacy-focused experience that combines the benefits of open finance and the principles of Cyberpunk ideology.
 
 # Dapp 
 https://atomik-protocol.vercel.app/
