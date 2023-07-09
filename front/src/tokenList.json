@@ -1,5 +1,12 @@
 [
     {
+        "ticker": "ALEO (Aleo)",
+        "img": "https://developer.aleo.org/img/logo-128x128.png",
+        "name": "Aleo",
+        "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "decimals": 18
+    },
+    {
         "ticker": "ETH (Scroll)",
         "img": "https://scroll.io/logo.png",
         "name": "Scroll",

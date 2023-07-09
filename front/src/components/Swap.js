@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input, Popover, Radio, Modal, message } from "antd";
+import { Input, Popover, Radio, Modal, message} from "antd";
 import {
   ArrowDownOutlined,
   DownOutlined,
@@ -7,35 +7,50 @@ import {
 } from "@ant-design/icons";
 import tokenList from "../tokenList.json";
 import axios from "axios";
-import { useSendTransaction, useWaitForTransaction } from "wagmi";
-
+import { useContractWrite, useWaitForTransaction, usePrepareContractWrite, useAccount } from "wagmi";
+import { AtomicContract } from "../App";
 
 function Swap(props) {
   const { address, isConnected } = props;
   const [messageApi, contextHolder] = message.useMessage();
   const [slippage, setSlippage] = useState(2.5);
   const [tokenOneAmount, setTokenOneAmount] = useState(null);
-  const [tokenTwoAmount, setTokenTwoAmount] = useState(null);
+  const [tokenTwoAmount, setTokenTwoAmount] = useState(null); 
   const [tokenOne, setTokenOne] = useState(tokenList[0]);
   const [tokenTwo, setTokenTwo] = useState(tokenList[1]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeToken, setChangeToken] = useState(1);
   const [prices, setPrices] = useState(1);
   const [txDetails, setTxDetails] = useState({
-    to:null,
+    to: null,
     data: null,
     value: null,
-  }); 
+  });
 
-  const {data, sendTransaction} = useSendTransaction({
-    request: {
-      from: address,
-      to: String(txDetails.to),
-      data: String(txDetails.data),
-      value: String(txDetails.value),
-    }
-  })
+  const swaps = [{address: "0x1", amount: 100}, {address: "0x2", amount: 42}]
 
+  const amount = tokenOneAmount && tokenOneAmount > 0 ? tokenOneAmount : 0;
+
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    ...AtomicContract,
+    functionName: "propose",
+    args: [{
+        from: address,
+        to: address,
+        amount: amount, 
+        duration: 2,
+        step: 1,
+    }],
+    overrides: {
+      value: amount?.toString() ?? "0",
+    },
+  });
+
+  const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   })
@@ -61,7 +76,6 @@ function Swap(props) {
     const two = tokenTwo;
     setTokenOne(two);
     setTokenTwo(one);
-    fetchPrices(two.address, one.address);
   }
 
   function openModal(asset) {
@@ -75,60 +89,16 @@ function Swap(props) {
     setTokenTwoAmount(null);
     if (changeToken === 1) {
       setTokenOne(tokenList[i]);
-      fetchPrices(tokenList[i].address, tokenTwo.address)
     } else {
       setTokenTwo(tokenList[i]);
-      fetchPrices(tokenOne.address, tokenList[i].address)
     }
     setIsOpen(false);
   }
 
-  async function fetchPrices(one, two){
-
-      // const res = await axios.get(`http://localhost:3001/tokenPrice`, {
-      //   params: {addressOne: one, addressTwo: two}
-      // })
-
-      
-      setPrices(1)
-  }
-
-  async function fetchDexSwap(){
-
-    const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
-  
-    if (allowance.data.allowance === "0") {
-
-      const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
-
-      setTxDetails(approve.data);
-      console.log("not approved")
-      return
-
-    }
-
-    const tx = await axios.get(
-      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
-    )
-
-    let decimals = Number(`1E${tokenTwo.decimals}`)
-    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
-
-    setTxDetails(tx.data.tx);
-  
-  }
-
-
-  useEffect(()=>{
-
-    fetchPrices(tokenList[0].address, tokenList[1].address)
-
-  }, [])
-
   useEffect(()=>{
 
       if(txDetails.to && isConnected){
-        sendTransaction();
+        write();
       }
   }, [txDetails])
 
@@ -168,12 +138,12 @@ function Swap(props) {
 
   const settings = (
     <>
-      <div>Slippage Tolerance</div>
+      <div>Timelock</div>
       <div>
         <Radio.Group value={slippage} onChange={handleSlippageChange}>
-          <Radio.Button value={0.5}>0.5%</Radio.Button>
-          <Radio.Button value={2.5}>2.5%</Radio.Button>
-          <Radio.Button value={5}>5.0%</Radio.Button>
+          <Radio.Button value={5000}>5 Minutes</Radio.Button>
+          <Radio.Button value={1000}>1 Minutes</Radio.Button>
+          <Radio.Button value={300}>30 Seconds</Radio.Button>
         </Radio.Group>
       </div>
     </>
@@ -215,6 +185,7 @@ function Swap(props) {
             trigger="click"
             placement="bottomRight"
           >
+            
             <SettingOutlined className="cog" />
           </Popover>
         </div>
@@ -240,7 +211,8 @@ function Swap(props) {
             <DownOutlined />
           </div>
         </div>
-        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={fetchDexSwap}>Swap</div>
+        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={write}>Propose</div>
+        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={write}>Swap</div>
       </div>
     </>
   );
