@@ -58,3 +58,4 @@ A frictionless, intuitive system, quick to use:
 2- atomic cross chain liquidity providing
 ![alt text](https://github.com/AtomicZK/atomiczk-protocol/blob/main/Figure%20%231%20-%20Cross-chain%20Atomic%20Swaps.png)
 
+XDC wallet address : xdce323236dae7699b528fe216bfcfcdc50f3d35c56
